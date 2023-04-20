@@ -27,7 +27,7 @@ class _TableCalendarExampleState extends State<TableCalendarExample> {
           children: [
             LeftPage(),
             TableCalendarPage(),
-            RightPage(),
+            Settings(),
           ],
         ),
       ),

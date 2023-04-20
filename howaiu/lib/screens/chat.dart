@@ -97,7 +97,7 @@ class _ChatAiuState extends State<ChatAiu> {
                       decoration: InputDecoration(
                         hintText: 'Type your message...',
                         contentPadding: EdgeInsets.symmetric(
-                            horizontal: 15.0, vertical: 12.0),
+                            horizontal: 15.0, vertical: 10.0),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
                           borderSide: BorderSide.none,

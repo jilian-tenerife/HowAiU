@@ -72,9 +72,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   animatedTexts: [
                     TypewriterAnimatedText(
                       title,
-                      textStyle: const TextStyle(
+                      textStyle: GoogleFonts.poppins(
                         fontSize: 32.0,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                       speed: const Duration(milliseconds: 100),
                     ),
@@ -83,7 +84,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   totalRepeatCount:
                       1, // Set this to 1 to play the animation only once
                 )),
-
+              SizedBox(
+                height: 25,
+              ),
               NeumorphicButton(
                 onPressed: () async {
                   await processRequest('feedback', widget.entry,
@@ -93,11 +96,18 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     });
                   });
                 },
-                child: Text('Get Feedback'),
+                child: Text(
+                  'Get Feedback',
+                  style: GoogleFonts.poppins(
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
                 style: NeumorphicStyle(
-                  color: Color(0xffc2c4b6), // Set the button's background color
+                  color: Color(0xffabb6c8), // Set the button's background color
                   depth: 5,
-                  shape: NeumorphicShape.flat,
+                  shape: NeumorphicShape.concave,
                 ),
               ),
               SizedBox(
@@ -115,12 +125,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       color: Color(0xffabb6c8),
                     ),
                     child: Padding(
+                      padding: EdgeInsets.all(16.0),
                       child: (AnimatedTextKit(
                         animatedTexts: [
                           TypewriterAnimatedText(
                             feedback,
                             speed: const Duration(milliseconds: 50),
-                            textStyle: TextStyle(
+                            textStyle: GoogleFonts.poppins(
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -135,6 +146,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   ),
                 ),
               //Text(feedback),
+              SizedBox(
+                height: 25,
+              ),
               NeumorphicButton(
                 onPressed: () async {
                   await processRequest('analytical_response', widget.entry,
@@ -144,11 +158,18 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     });
                   });
                 },
-                child: Text('Get Analytical Response'),
+                child: Text(
+                  'Get Analytical Response',
+                  style: GoogleFonts.poppins(
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
                 style: NeumorphicStyle(
-                  color: Color(0xffc2c4b6), // Set the button's background color
+                  color: Color(0xffabb6c8), // Set the button's background color
                   depth: 5,
-                  shape: NeumorphicShape.flat,
+                  shape: NeumorphicShape.concave,
                 ),
               ),
               SizedBox(
@@ -166,6 +187,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         color: Color(0xffabb6c8),
                       ),
                       child: Padding(
+                        padding: EdgeInsets.all(16.0),
                         child: (AnimatedTextKit(
                           animatedTexts: [
                             TypewriterAnimatedText(
@@ -185,6 +207,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       )),
                 ),
               //Text(analysis),
+              SizedBox(
+                height: 25,
+              ),
               NeumorphicButton(
                 onPressed: () async {
                   final allEntries = widget.previousEntries + [widget.entry];
@@ -196,12 +221,22 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     });
                   });
                 },
-                child: Text('Get Contextual Response'),
-                style: NeumorphicStyle(
-                  color: Color(0xffc2c4b6), // Set the button's background color
-                  depth: 5,
-                  shape: NeumorphicShape.flat,
+                child: Text(
+                  'Get Contextual Response',
+                  style: GoogleFonts.poppins(
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
+                style: NeumorphicStyle(
+                  color: Color(0xffabb6c8), // Set the button's background color
+                  depth: 5,
+                  shape: NeumorphicShape.concave,
+                ),
+              ),
+              SizedBox(
+                height: 25,
               ),
               if (contextualResponse != '')
                 SizedBox(
