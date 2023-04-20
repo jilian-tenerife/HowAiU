@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import '../widgets/chat_bubble.dart';
 
 class ChatAiu extends StatefulWidget {
@@ -19,13 +20,25 @@ class _ChatAiuState extends State<ChatAiu> {
     ),
   ];
 
-  void _sendMessage() {
+  Future<String> _sendMessage(String message, String name) async {
     String text = _controller.text.trim();
     if (text.isNotEmpty) {
       setState(() {
         _messages.add(ChatBubble(text: text, isCurrentUser: true));
       });
       _controller.clear();
+    }
+
+    final response = await http.post(
+      Uri.parse('http://10.0.2.2:5001/chat'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'message': message, 'name': name}),
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body)['response'];
+    } else {
+      throw Exception('Failed to load chatbot response');
     }
   }
 
@@ -63,7 +76,14 @@ class _ChatAiuState extends State<ChatAiu> {
                   ),
                 ),
                 IconButton(
-                  onPressed: _sendMessage,
+                  onPressed: () async {
+                    String message = _controller.text;
+                    String response = await _sendMessage(message, 'JiwJiw');
+                    setState(() {
+                      _messages.add(
+                          ChatBubble(text: response, isCurrentUser: false));
+                    });
+                  },
                   icon: const Icon(Icons.send),
                 ),
               ],
