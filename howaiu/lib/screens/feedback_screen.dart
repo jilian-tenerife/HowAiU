@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -113,17 +114,24 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       shape: NeumorphicShape.convex,
                       color: Color(0xffabb6c8),
                     ),
-                    child: (AnimatedTextKit(
-                      animatedTexts: [
-                        TypewriterAnimatedText(
-                          feedback,
-                          speed: const Duration(milliseconds: 50),
-                        ),
-                      ],
-                      repeatForever: false, // Set this to false
-                      totalRepeatCount:
-                          1, // Set this to 1 to play the animation only once
-                    )),
+                    child: Padding(
+                      child: (AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                            feedback,
+                            speed: const Duration(milliseconds: 50),
+                            textStyle: TextStyle(
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                        repeatForever: false, // Set this to false
+                        totalRepeatCount:
+                            1, // Set this to 1 to play the animation only once
+                      )),
+                    ),
                   ),
                 ),
               //Text(feedback),
@@ -147,17 +155,35 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 height: 25,
               ),
               if (analysis != '')
-                (AnimatedTextKit(
-                  animatedTexts: [
-                    TypewriterAnimatedText(
-                      analysis,
-                      speed: const Duration(milliseconds: 50),
-                    ),
-                  ],
-                  repeatForever: false, // Set this to false
-                  totalRepeatCount:
-                      1, // Set this to 1 to play the animation only once
-                )),
+                SizedBox(
+                  width: 350,
+                  height: 150,
+                  child: Neumorphic(
+                      style: NeumorphicStyle(
+                        depth: -5,
+                        intensity: 1,
+                        shape: NeumorphicShape.convex,
+                        color: Color(0xffabb6c8),
+                      ),
+                      child: Padding(
+                        child: (AnimatedTextKit(
+                          animatedTexts: [
+                            TypewriterAnimatedText(
+                              analysis,
+                              textStyle: GoogleFonts.poppins(
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                              speed: const Duration(milliseconds: 50),
+                            ),
+                          ],
+                          repeatForever: false, // Set this to false
+                          totalRepeatCount:
+                              1, // Set this to 1 to play the animation only once
+                        )),
+                      )),
+                ),
               //Text(analysis),
               NeumorphicButton(
                 onPressed: () async {
@@ -188,17 +214,25 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       shape: NeumorphicShape.concave,
                       color: Color(0xffabb6c8),
                     ),
-                    child: (AnimatedTextKit(
-                      animatedTexts: [
-                        TypewriterAnimatedText(
-                          contextualResponse,
-                          speed: const Duration(milliseconds: 50),
-                        ),
-                      ],
-                      repeatForever: false, // Set this to false
-                      totalRepeatCount:
-                          1, // Set this to 1 to play the animation only once
-                    )),
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: (AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                            contextualResponse,
+                            textStyle: GoogleFonts.poppins(
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                            speed: const Duration(milliseconds: 50),
+                          ),
+                        ],
+                        repeatForever: false, // Set this to false
+                        totalRepeatCount:
+                            1, // Set this to 1 to play the animation only once
+                      )),
+                    ),
                   ),
                 ),
               //Text(contextualResponse),
