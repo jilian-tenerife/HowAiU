@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:howaiu/screens/chat.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'diary.dart';
 import 'left.dart';
