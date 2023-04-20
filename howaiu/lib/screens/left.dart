@@ -1,11 +1,13 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/material.dart';
 
-class LeftPage extends StatelessWidget {
-  const LeftPage({super.key});
+class LeftPage extends StatefulWidget {
+  @override
+  _LeftPageState createState() => _LeftPageState();
+}
 
+class _LeftPageState extends State<LeftPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(child: Text('Left Page'));
   }
 }

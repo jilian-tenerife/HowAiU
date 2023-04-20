@@ -1,11 +1,13 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/cupertino.dart';
 
-class RightPage extends StatelessWidget {
-  const RightPage({super.key});
+class RightPage extends StatefulWidget {
+  @override
+  _RightPageState createState() => _RightPageState();
+}
 
+class _RightPageState extends State<RightPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(child: Text('Right Page'));
   }
 }
