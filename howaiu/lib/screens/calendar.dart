@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:howaiu/screens/diary_entries.dart';
 import 'package:howaiu/screens/listview_diary.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -10,6 +12,8 @@ class TableCalendarPage extends StatefulWidget {
   @override
   _TableCalendarPageState createState() => _TableCalendarPageState();
 }
+
+String name = "Jerery";
 
 class _TableCalendarPageState extends State<TableCalendarPage> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
@@ -24,16 +28,19 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
       child: Column(
         children: [
           SizedBox(
-            height: 20,
+            height: 25,
           ),
           Row(
             children: [
               const SizedBox(
-                width: 140,
+                width: 105,
               ),
               Text(
                 'howaiu',
-                style: TextStyle(fontSize: 35),
+                style: GoogleFonts.poppins(
+                    fontSize: 45,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff5d7599)),
               ),
               const SizedBox(
                 width: 65,
@@ -51,13 +58,16 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
                   width: 50,
                   height: 50,
                   alignment: Alignment.center,
-                  child: const Icon(Icons.person_2),
+                  child: const Icon(
+                    Icons.person_2,
+                    color: Color(0xff5d7599),
+                  ),
                 ),
               ),
             ],
           ),
           SizedBox(
-            height: 100,
+            height: 70,
           ),
           SizedBox(
             width: 350,
@@ -71,6 +81,21 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
                 color: baseColor,
               ),
               child: TableCalendar(
+                calendarStyle: CalendarStyle(
+                  defaultTextStyle: TextStyle(
+                      color: Color(0xff5d7599)), // changes the numbers color
+                  weekendTextStyle: TextStyle(
+                      color: Color(
+                          0xff1e2f97)), // changes the weekend numbers color
+                ),
+                daysOfWeekStyle: DaysOfWeekStyle(
+                  weekdayStyle: TextStyle(
+                      color:
+                          Color(0xff1e2f97)), // changes the weekday text color
+                  weekendStyle: TextStyle(
+                      color:
+                          Color(0xff1e2f97)), // changes the weekend text color
+                ),
                 firstDay: DateTime.utc(2020, 01, 01),
                 lastDay: DateTime.utc(2030, 12, 31),
                 focusedDay: _focusedDay,
@@ -86,7 +111,7 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DiaryEntriesPage(),
+                      builder: (context) => DiaryScreen(),
                     ),
                   );
                 },
@@ -104,7 +129,7 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
             ),
           ),
           const SizedBox(
-            height: 100,
+            height: 70,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -122,7 +147,10 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
                   width: 60,
                   height: 60,
                   alignment: Alignment.center,
-                  child: Icon(Icons.person_2),
+                  child: Icon(
+                    Icons.auto_graph_sharp,
+                    color: Color(0xff5d7599),
+                  ),
                 ),
               ),
               NeumorphicButton(
@@ -144,7 +172,11 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
                   width: 100,
                   height: 100,
                   alignment: Alignment.center,
-                  child: Text('AiU'),
+                  child: Text('AiU',
+                      style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff5d7599))),
                 ),
               ),
               NeumorphicButton(
@@ -158,7 +190,10 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
                   width: 50,
                   height: 50,
                   alignment: Alignment.center,
-                  child: Icon(Icons.settings),
+                  child: Icon(
+                    Icons.settings,
+                    color: Color(0xff5d7599),
+                  ),
                 ),
               ),
             ],

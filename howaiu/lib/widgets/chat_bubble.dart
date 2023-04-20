@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class ChatBubble extends StatelessWidget {
   const ChatBubble({
@@ -11,6 +12,8 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color baseColor = Color(0xffdadada); // Set the base color for neumorphism
+
     return Padding(
       // asymmetric padding
       padding: EdgeInsets.fromLTRB(
@@ -22,11 +25,13 @@ class ChatBubble extends StatelessWidget {
       child: Align(
         // align the child within the container
         alignment: isCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
-        child: DecoratedBox(
-          // chat bubble decoration
-          decoration: BoxDecoration(
-            color: isCurrentUser ? Colors.blue : Colors.grey[300],
-            borderRadius: BorderRadius.circular(16),
+        child: Neumorphic(
+          style: NeumorphicStyle(
+            shape: NeumorphicShape.concave,
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(16)),
+            depth: 4,
+            lightSource: LightSource.topLeft,
+            color: isCurrentUser ? Color(0xffabb6c8) : Color(0xffabb6c8),
           ),
           child: Padding(
             padding: const EdgeInsets.all(12),

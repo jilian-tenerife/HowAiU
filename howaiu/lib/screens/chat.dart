@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../widgets/chat_bubble.dart';
@@ -15,7 +16,7 @@ class _ChatAiuState extends State<ChatAiu> {
   final TextEditingController _controller = TextEditingController();
   List<ChatBubble> _messages = [
     const ChatBubble(
-      text: 'How can I help you bitch lasagna?',
+      text: 'How can I help you?',
       isCurrentUser: false,
     ),
   ];
@@ -44,10 +45,28 @@ class _ChatAiuState extends State<ChatAiu> {
 
   @override
   Widget build(BuildContext context) {
+    Color baseColor = const Color(0xffdadada);
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chat AIU'),
-        backgroundColor: Colors.grey[300],
+      backgroundColor: Color(0xffabb6c8),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(56.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.0)),
+          child: Neumorphic(
+            style: NeumorphicStyle(
+              depth: 10,
+              shape: NeumorphicShape.concave,
+              lightSource: LightSource.bottomLeft,
+              color: baseColor,
+            ),
+            child: AppBar(
+              backgroundColor: Color(0xffabb6c8),
+              elevation: 10,
+              title: const Text('AiU'),
+            ),
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -61,21 +80,33 @@ class _ChatAiuState extends State<ChatAiu> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
             child: Row(
               children: [
                 Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: InputDecoration(
-                      hintText: 'Type your message...',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                  child: Neumorphic(
+                    style: NeumorphicStyle(
+                      depth: 4,
+                      shape: NeumorphicShape.convex,
+                      lightSource: LightSource.topLeft,
+                      color: Color(0xffabb6c8),
+                    ),
+                    child: TextField(
+                      controller: _controller,
+                      decoration: InputDecoration(
+                        hintText: 'Type your message...',
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 15.0, vertical: 12.0),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide.none,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                IconButton(
+                NeumorphicButton(
                   onPressed: () async {
                     String message = _controller.text;
                     String response = await _sendMessage(message, 'JiwJiw');
@@ -84,7 +115,10 @@ class _ChatAiuState extends State<ChatAiu> {
                           ChatBubble(text: response, isCurrentUser: false));
                     });
                   },
-                  icon: const Icon(Icons.send),
+                  child: Icon(
+                    Icons.send,
+                    color: Color(0xffabb6c8),
+                  ),
                 ),
               ],
             ),

@@ -39,6 +39,7 @@ class _DiaryEntriesPageState extends State<DiaryEntriesPage> {
 
     return SafeArea(
       child: Scaffold(
+        backgroundColor: baseColor,
         body: Column(
           children: [
             SizedBox(
