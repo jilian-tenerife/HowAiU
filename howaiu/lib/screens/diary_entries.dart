@@ -133,7 +133,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                       },
                       style: NeumorphicStyle(
                         color: Color(
-                            0xfff7f0c6), // Set the button's background color
+                            0xffc2c4b6), // Set the button's background color
                         depth: 5,
                         shape: NeumorphicShape.flat,
                       ),

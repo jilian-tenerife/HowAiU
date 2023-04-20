@@ -51,107 +51,159 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Feedback'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Center(
-                  child: AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                    title,
-                    textStyle: const TextStyle(
-                      fontSize: 32.0,
-                      fontWeight: FontWeight.bold,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color(0xffabb6c8),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Center(
+                  child: SizedBox(
+                    height: 10,
+                  ),
+                ),
+              ),
+              if (title != '')
+                (AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      title,
+                      textStyle: const TextStyle(
+                        fontSize: 32.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      speed: const Duration(milliseconds: 100),
                     ),
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                ],
-                repeatForever: false, // Set this to false
-                totalRepeatCount:
-                    1, // Set this to 1 to play the animation only once
-              )),
-            ),
-            NeumorphicButton(
-              onPressed: () async {
-                await processRequest('feedback', widget.entry, (String value) {
-                  setState(() {
-                    feedback = value;
+                  ],
+                  repeatForever: false, // Set this to false
+                  totalRepeatCount:
+                      1, // Set this to 1 to play the animation only once
+                )),
+
+              NeumorphicButton(
+                onPressed: () async {
+                  await processRequest('feedback', widget.entry,
+                      (String value) {
+                    setState(() {
+                      feedback = value;
+                    });
                   });
-                });
-              },
-              child: Text('Get Feedback'),
-            ),
-            if (feedback != '')
-              (AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                    feedback,
-                    speed: const Duration(milliseconds: 50),
+                },
+                child: Text('Get Feedback'),
+                style: NeumorphicStyle(
+                  color: Color(0xffc2c4b6), // Set the button's background color
+                  depth: 5,
+                  shape: NeumorphicShape.flat,
+                ),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              if (feedback != '')
+                SizedBox(
+                  width: 350,
+                  height: 150,
+                  child: Neumorphic(
+                    style: NeumorphicStyle(
+                      depth: -5,
+                      intensity: 1,
+                      shape: NeumorphicShape.convex,
+                      color: Color(0xffabb6c8),
+                    ),
+                    child: (AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          feedback,
+                          speed: const Duration(milliseconds: 50),
+                        ),
+                      ],
+                      repeatForever: false, // Set this to false
+                      totalRepeatCount:
+                          1, // Set this to 1 to play the animation only once
+                    )),
                   ),
-                ],
-                repeatForever: false, // Set this to false
-                totalRepeatCount:
-                    1, // Set this to 1 to play the animation only once
-              )),
-            //Text(feedback),
-            NeumorphicButton(
-              onPressed: () async {
-                await processRequest('analytical_response', widget.entry,
-                    (String value) {
-                  setState(() {
-                    analysis = value;
+                ),
+              //Text(feedback),
+              NeumorphicButton(
+                onPressed: () async {
+                  await processRequest('analytical_response', widget.entry,
+                      (String value) {
+                    setState(() {
+                      analysis = value;
+                    });
                   });
-                });
-              },
-              child: Text('Get Analytical Response'),
-            ),
-            if (analysis != '')
-              (AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                    analysis,
-                    speed: const Duration(milliseconds: 50),
-                  ),
-                ],
-                repeatForever: false, // Set this to false
-                totalRepeatCount:
-                    1, // Set this to 1 to play the animation only once
-              )),
-            //Text(analysis),
-            NeumorphicButton(
-              onPressed: () async {
-                final allEntries = widget.previousEntries + [widget.entry];
-                await processRequest(
-                    'contextual_response', allEntries.join('\n'),
-                    (String value) {
-                  setState(() {
-                    contextualResponse = value;
+                },
+                child: Text('Get Analytical Response'),
+                style: NeumorphicStyle(
+                  color: Color(0xffc2c4b6), // Set the button's background color
+                  depth: 5,
+                  shape: NeumorphicShape.flat,
+                ),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              if (analysis != '')
+                (AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      analysis,
+                      speed: const Duration(milliseconds: 50),
+                    ),
+                  ],
+                  repeatForever: false, // Set this to false
+                  totalRepeatCount:
+                      1, // Set this to 1 to play the animation only once
+                )),
+              //Text(analysis),
+              NeumorphicButton(
+                onPressed: () async {
+                  final allEntries = widget.previousEntries + [widget.entry];
+                  await processRequest(
+                      'contextual_response', allEntries.join('\n'),
+                      (String value) {
+                    setState(() {
+                      contextualResponse = value;
+                    });
                   });
-                });
-              },
-              child: Text('Get Contextual Response'),
-            ),
-            if (contextualResponse != '')
-              (AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                    contextualResponse,
-                    speed: const Duration(milliseconds: 50),
+                },
+                child: Text('Get Contextual Response'),
+                style: NeumorphicStyle(
+                  color: Color(0xffc2c4b6), // Set the button's background color
+                  depth: 5,
+                  shape: NeumorphicShape.flat,
+                ),
+              ),
+              if (contextualResponse != '')
+                SizedBox(
+                  width: 350,
+                  height: 150,
+                  child: Neumorphic(
+                    style: NeumorphicStyle(
+                      depth: -5,
+                      intensity: 1,
+                      shape: NeumorphicShape.concave,
+                      color: Color(0xffabb6c8),
+                    ),
+                    child: (AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          contextualResponse,
+                          speed: const Duration(milliseconds: 50),
+                        ),
+                      ],
+                      repeatForever: false, // Set this to false
+                      totalRepeatCount:
+                          1, // Set this to 1 to play the animation only once
+                    )),
                   ),
-                ],
-                repeatForever: false, // Set this to false
-                totalRepeatCount:
-                    1, // Set this to 1 to play the animation only once
-              )),
-            //Text(contextualResponse),
-          ],
+                ),
+              //Text(contextualResponse),
+            ],
+          ),
         ),
       ),
     );
