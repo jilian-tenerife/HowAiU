@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -74,10 +75,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 ],
                 repeatForever: false, // Set this to false
                 totalRepeatCount:
-                    2, // Set this to 1 to play the animation only once
+                    1, // Set this to 1 to play the animation only once
               )),
             ),
-            ElevatedButton(
+            NeumorphicButton(
               onPressed: () async {
                 await processRequest('feedback', widget.entry, (String value) {
                   setState(() {
@@ -100,7 +101,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     1, // Set this to 1 to play the animation only once
               )),
             //Text(feedback),
-            ElevatedButton(
+            NeumorphicButton(
               onPressed: () async {
                 await processRequest('analytical_response', widget.entry,
                     (String value) {
@@ -124,7 +125,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     1, // Set this to 1 to play the animation only once
               )),
             //Text(analysis),
-            ElevatedButton(
+            NeumorphicButton(
               onPressed: () async {
                 final allEntries = widget.previousEntries + [widget.entry];
                 await processRequest(

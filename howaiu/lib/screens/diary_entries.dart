@@ -73,6 +73,9 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     controller: entryController,
                     decoration: InputDecoration(
                       hintText: "Write your thoughts...",
+                      hintStyle: TextStyle(
+                        color: Color(0xff5d7599),
+                      ),
                       border: InputBorder.none,
                       enabledBorder: InputBorder.none,
                     ),
@@ -98,7 +101,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
               style: NeumorphicStyle(
                 color: Color(0xffabb6c8), // Set the button's background color
                 depth: 5,
-                shape: NeumorphicShape.convex,
+                shape: NeumorphicShape.flat,
               ),
               child: Text(
                 'Add Entry',
@@ -128,6 +131,12 @@ class _DiaryScreenState extends State<DiaryScreen> {
                           ),
                         );
                       },
+                      style: NeumorphicStyle(
+                        color: Color(
+                            0xfff7f0c6), // Set the button's background color
+                        depth: 5,
+                        shape: NeumorphicShape.flat,
+                      ),
                       child: Text(
                         'Feedback',
                         style: GoogleFonts.poppins(
