@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:howaiu/diary.dart';
+import 'package:howaiu/screens/diary.dart';
 
 import 'datechanger.dart';
 
@@ -69,7 +69,7 @@ class _ActionButtonsState extends State<ActionButtons> {
               setState(() {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Diary()),
+                  MaterialPageRoute(builder: (context) => DiaryPage()),
                 );
               });
             },

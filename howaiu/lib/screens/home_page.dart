@@ -1,120 +1,172 @@
-import 'dart:math';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import '../main.dart';
-import '../widgets/search_and_menu.dart';
-import '../widgets/front_view.dart';
-import '../widgets/back_view.dart';
-import '../widgets/action_buttons.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:howaiu/screens/chat.dart';
+import 'package:table_calendar/table_calendar.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+import 'diary.dart';
 
+class TableCalendarExample extends StatefulWidget {
   @override
-  State<HomePage> createState() => _HomePageState();
+  _TableCalendarExampleState createState() => _TableCalendarExampleState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  bool isFrontView = true;
-
-  late AnimationController controller;
-
-  switchView() {
-    setState(() {
-      if (isFrontView) {
-        controller.forward();
-      } else {
-        controller.reverse();
-      }
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300));
-  }
+class _TableCalendarExampleState extends State<TableCalendarExample> {
+  CalendarFormat _calendarFormat = CalendarFormat.month;
+  DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDay;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xff5D7599),
-      body: SafeArea(
-        child: Column(
-          children: [
-            // search and menu
-            const SearchAndMenu(),
-            const SizedBox(height: 30.0),
+    Color baseColor = const Color(0xffdadada);
 
-            // year selector
-            Neumorphic(
-              style: NeumorphicStyle(
-                  border: NeumorphicBorder(
-                    color: Color(0x33000000),
-                    width: 0.8,
-                  ),
-                  shape: NeumorphicShape.concave,
-                  boxShape:
-                      NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
-                  depth: 5,
-                  lightSource: LightSource.topLeft,
-                  color: Colors.grey),
-              child: DropdownButton(
-                value: '2022',
-                items: const [
-                  DropdownMenuItem(value: '2022', child: Text('2023')),
-                ],
-                onChanged: (value) {},
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: baseColor,
+        body: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20,
               ),
-            ),
-            const SizedBox(height: 30.0),
-
-            // month cards
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 22.0),
-                child: PageView.builder(
-                  controller: PageController(
-                    initialPage: 0,
-                    viewportFraction: 0.78,
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 150,
                   ),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 12, // for 12 months
-                  itemBuilder: (_, i) => AnimatedBuilder(
-                      animation: controller,
-                      builder: (_, child) {
-                        if (controller.value >= 0.5) {
-                          isFrontView = false;
-                        } else {
-                          isFrontView = true;
-                        }
-
-                        return Transform(
-                          transform: Matrix4.identity()
-                            ..setEntry(3, 2, 0.001)
-                            ..rotateY(controller.value * pi),
-                          alignment: Alignment.center,
-                          child: isFrontView
-                              ? FrontView(monthIndex: i + 1)
-                              : Transform(
-                                  transform: Matrix4.rotationY(pi),
-                                  alignment: Alignment.center,
-                                  child: BackView(
-                                    monthIndex: i + 1,
-                                  ),
-                                ),
-                        );
-                      }),
+                  Text(
+                    'howaiu',
+                    style: TextStyle(fontSize: 35),
+                  ),
+                  const SizedBox(
+                    width: 65,
+                  ),
+                  Neumorphic(
+                    style: NeumorphicStyle(
+                      shape: NeumorphicShape.convex,
+                      boxShape: NeumorphicBoxShape.circle(),
+                      depth: 8,
+                      intensity: 0.7,
+                      lightSource: LightSource.topLeft,
+                      color: Colors.grey[300],
+                    ),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      alignment: Alignment.center,
+                      child: const Icon(Icons.person_2),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 100,
+              ),
+              SizedBox(
+                width: 350,
+                height: 400,
+                child: Neumorphic(
+                  style: NeumorphicStyle(
+                    depth: 5,
+                    shape: NeumorphicShape.convex,
+                    lightSource: LightSource.topLeft,
+                    intensity: 0.7,
+                    color: baseColor,
+                  ),
+                  child: TableCalendar(
+                    firstDay: DateTime.utc(2020, 01, 01),
+                    lastDay: DateTime.utc(2030, 12, 31),
+                    focusedDay: _focusedDay,
+                    calendarFormat: _calendarFormat,
+                    selectedDayPredicate: (day) {
+                      return isSameDay(_selectedDay, day);
+                    },
+                    onDaySelected: (selectedDay, focusedDay) {
+                      setState(() {
+                        _selectedDay = selectedDay;
+                        _focusedDay = focusedDay;
+                      });
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DiaryPage(),
+                        ),
+                      );
+                    },
+                    onFormatChanged: (format) {
+                      if (_calendarFormat != format) {
+                        setState(() {
+                          _calendarFormat = format;
+                        });
+                      }
+                    },
+                    onPageChanged: (focusedDay) {
+                      _focusedDay = focusedDay;
+                    },
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 30.0),
-            // action buttons
-            ActionButtons(change: switchView),
-            const SizedBox(height: 75.0),
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  NeumorphicButton(
+                    style: NeumorphicStyle(
+                      shape: NeumorphicShape.convex,
+                      boxShape: NeumorphicBoxShape.circle(),
+                      depth: 8,
+                      intensity: 0.7,
+                      lightSource: LightSource.topLeft,
+                      color: Colors.grey[300],
+                    ),
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      alignment: Alignment.center,
+                      child: Icon(Icons.person_2),
+                    ),
+                  ),
+                  NeumorphicButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ChatAiu()),
+                      );
+                    },
+                    style: NeumorphicStyle(
+                      shape: NeumorphicShape.convex,
+                      boxShape: NeumorphicBoxShape.circle(),
+                      depth: 8,
+                      intensity: 0.7,
+                      lightSource: LightSource.topLeft,
+                      color: Colors.grey[300],
+                    ),
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      alignment: Alignment.center,
+                      child: Text('AiU'),
+                    ),
+                  ),
+                  NeumorphicButton(
+                    style: NeumorphicStyle(
+                      color: baseColor,
+                      shape: NeumorphicShape.convex,
+                      boxShape: NeumorphicBoxShape.circle(),
+                      depth: 5,
+                    ),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      alignment: Alignment.center,
+                      child: Icon(Icons.settings),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

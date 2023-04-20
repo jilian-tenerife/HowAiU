@@ -17,6 +17,9 @@ class SplashScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
+            SizedBox(
+              height: 300,
+            ),
             Lottie.asset(
               'assets/images/uwu.json',
               width: 200, // set the width of the Lottie animation
