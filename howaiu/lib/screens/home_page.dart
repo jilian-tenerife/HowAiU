@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:howaiu/screens/chat.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import 'diary.dart';
@@ -105,7 +106,7 @@ class _TableCalendarExampleState extends State<TableCalendarExample> {
                 ),
               ),
               const SizedBox(
-                height: 100,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -127,6 +128,12 @@ class _TableCalendarExampleState extends State<TableCalendarExample> {
                     ),
                   ),
                   NeumorphicButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ChatAiu()),
+                      );
+                    },
                     style: NeumorphicStyle(
                       shape: NeumorphicShape.convex,
                       boxShape: NeumorphicBoxShape.circle(),
