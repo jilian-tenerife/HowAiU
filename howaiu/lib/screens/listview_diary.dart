@@ -9,11 +9,10 @@ class DiaryEntriesPage extends StatefulWidget {
 }
 
 class DiaryEntry {
-  final String title;
   final String content;
   final DateTime date;
 
-  DiaryEntry({required this.title, required this.content, required this.date});
+  DiaryEntry({required this.content, required this.date});
 }
 
 class _DiaryEntriesPageState extends State<DiaryEntriesPage> {
@@ -25,7 +24,6 @@ class _DiaryEntriesPageState extends State<DiaryEntriesPage> {
     setState(() {
       diaryEntries.add(
         DiaryEntry(
-          title: titleController.text,
           content: contentController.text,
           date: DateTime.now(),
         ),
@@ -53,34 +51,54 @@ class _DiaryEntriesPageState extends State<DiaryEntriesPage> {
             SizedBox(
               height: 25,
             ),
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: TextField(
-                controller: contentController,
-                decoration: InputDecoration(
-                  hintText: "Write your thoughts...",
-                  border: InputBorder.none,
-                  enabledBorder: InputBorder.none,
+            SizedBox(
+              width: 350,
+              height: 300,
+              child: Neumorphic(
+                style: NeumorphicStyle(
+                  depth: 5,
+                  shape: NeumorphicShape.convex,
+                  lightSource: LightSource.topLeft,
+                  intensity: 0.7,
+                  color: baseColor,
                 ),
-                maxLines: null,
-                keyboardType: TextInputType.multiline,
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: TextField(
+                    controller: contentController,
+                    decoration: InputDecoration(
+                      hintText: "Write your thoughts...",
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                    ),
+                    maxLines: null,
+                    keyboardType: TextInputType.multiline,
+                  ),
+                ),
               ),
             ),
-            NeumorphicButton(
-              onPressed: addDiaryEntry,
-              style: NeumorphicStyle(
-                color: baseColor, // Set the button's background color
-                depth: 5, // Set the depth of the button's shadow
-                shape: NeumorphicShape.convex,
-              ),
-              child: Center(
-                child: Text(
-                  'Add Entry', // Set the text of the button
-                  style: GoogleFonts.poppins(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color:
-                          Color(0xff5d7599)), // Set the font size of the text
+            SizedBox(
+              height: 50,
+            ),
+            SizedBox(
+              width: 300,
+              height: 50,
+              child: NeumorphicButton(
+                onPressed: addDiaryEntry,
+                style: NeumorphicStyle(
+                  color: baseColor, // Set the button's background color
+                  depth: 5, // Set the depth of the button's shadow
+                  shape: NeumorphicShape.convex,
+                ),
+                child: Center(
+                  child: Text(
+                    'Add Entry', // Set the text of the button
+                    style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color:
+                            Color(0xff5d7599)), // Set the font size of the text
+                  ),
                 ),
               ),
             ),
@@ -90,7 +108,6 @@ class _DiaryEntriesPageState extends State<DiaryEntriesPage> {
                 itemBuilder: (context, index) {
                   final entry = diaryEntries[index];
                   return ListTile(
-                    title: Text(entry.title),
                     subtitle: Text(entry.content),
                     trailing:
                         Text(DateFormat('MM/dd/yyyy HH:mm').format(entry.date)),

@@ -3,6 +3,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:howaiu/screens/listview_diary.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import 'chat.dart';
 import 'diary.dart';
 
 class TableCalendarPage extends StatefulWidget {
@@ -28,7 +29,7 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
           Row(
             children: [
               const SizedBox(
-                width: 150,
+                width: 140,
               ),
               Text(
                 'howaiu',
@@ -125,6 +126,12 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
                 ),
               ),
               NeumorphicButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ChatAiu()),
+                  );
+                },
                 style: NeumorphicStyle(
                   shape: NeumorphicShape.convex,
                   boxShape: NeumorphicBoxShape.circle(),
