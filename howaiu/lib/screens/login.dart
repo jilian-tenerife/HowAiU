@@ -35,11 +35,22 @@ class Login extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Color(0xff5d7599)),
                   ),
+                  Container(
+                    height: 300,
+                    width: 300,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/howaiu.png'),
+                        fit: BoxFit
+                            .cover, // Specify how the image should be fitted inside the box
+                      ),
+                    ),
+                  ),
                 ],
               ),
-              const SizedBox(
-                height: 95,
-              ),
+              // const SizedBox(
+              //   height: 95,
+              // ),
               const SizedBox(
                 height: 45,
               ),
