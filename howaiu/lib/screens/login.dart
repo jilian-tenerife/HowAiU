@@ -2,7 +2,6 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:howaiu/screens/forgotpass.dart';
 import 'package:howaiu/screens/home_page.dart';
 import 'package:howaiu/screens/signup.dart';
@@ -28,13 +27,6 @@ class Login extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'howaiu?',
-                    style: GoogleFonts.poppins(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff5d7599)),
-                  ),
                   Container(
                     height: 300,
                     width: 300,
@@ -65,7 +57,7 @@ class Login extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: TextField(
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: const Color(0xffabb6c8)),
@@ -97,7 +89,7 @@ class Login extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(10),
                       child: TextField(
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Color(0xff5d7599)),
@@ -124,7 +116,7 @@ class Login extends StatelessWidget {
                   InkWell(
                     child: Text(
                       'Forgot password?',
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                           fontSize: 16,
                           color: Color(0xff5d7599),
                           decoration: TextDecoration.underline,
@@ -171,7 +163,7 @@ class Login extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Log In', // Set the text of the button
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Color(
@@ -187,7 +179,7 @@ class Login extends StatelessWidget {
               InkWell(
                 child: Text(
                   'Sign Up',
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                       color: Color(0xff5d7599),
                       fontSize: 16,
                       decoration: TextDecoration.underline,

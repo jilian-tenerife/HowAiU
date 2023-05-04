@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:howaiu/screens/login.dart';
 
 class Settings extends StatefulWidget {
@@ -39,7 +38,7 @@ class _SettingsPageState extends State<Settings> {
                   SizedBox(width: 10),
                   Text(
                     'Settings',
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
@@ -84,7 +83,7 @@ class _SettingsPageState extends State<Settings> {
                       ),
                       Text(
                         'Garfield Greg V. Lim',
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
@@ -126,7 +125,7 @@ class _SettingsPageState extends State<Settings> {
         children: [
           Text(
             title,
-            style: GoogleFonts.poppins(
+            style: TextStyle(
                 fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           Transform.scale(
@@ -155,7 +154,7 @@ class _SettingsPageState extends State<Settings> {
           children: [
             Text(
               title,
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
@@ -190,7 +189,7 @@ Widget buildAccountOption(BuildContext context, String title,
         children: [
           Text(
             title,
-            style: GoogleFonts.poppins(
+            style: TextStyle(
                 fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           Icon(

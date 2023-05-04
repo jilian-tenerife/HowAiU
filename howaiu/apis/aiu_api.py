@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 previous_entries = []
 
-openai.api_key = "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"
+openai.api_key = "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"
 chat_history = []
 
 

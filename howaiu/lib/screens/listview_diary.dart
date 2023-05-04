@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class DiaryEntriesPage extends StatefulWidget {
@@ -94,7 +93,7 @@ class _DiaryEntriesPageState extends State<DiaryEntriesPage> {
                 child: Center(
                   child: Text(
                     'Add Entry', // Set the text of the button
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color:

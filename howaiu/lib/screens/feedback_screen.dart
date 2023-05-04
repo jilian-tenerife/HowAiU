@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -72,7 +71,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   animatedTexts: [
                     TypewriterAnimatedText(
                       title,
-                      textStyle: GoogleFonts.poppins(
+                      textStyle: TextStyle(
                         fontSize: 32.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -98,7 +97,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 },
                 child: Text(
                   'Get Feedback',
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 12.0,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -131,7 +130,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                           TypewriterAnimatedText(
                             feedback,
                             speed: const Duration(milliseconds: 50),
-                            textStyle: GoogleFonts.poppins(
+                            textStyle: TextStyle(
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -160,7 +159,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 },
                 child: Text(
                   'Get Analytical Response',
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 12.0,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -192,7 +191,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                           animatedTexts: [
                             TypewriterAnimatedText(
                               analysis,
-                              textStyle: GoogleFonts.poppins(
+                              textStyle: TextStyle(
                                 fontSize: 12.0,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -223,7 +222,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 },
                 child: Text(
                   'Get Contextual Response',
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 12.0,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -255,7 +254,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         animatedTexts: [
                           TypewriterAnimatedText(
                             contextualResponse,
-                            textStyle: GoogleFonts.poppins(
+                            textStyle: TextStyle(
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,

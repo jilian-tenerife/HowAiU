@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -49,7 +48,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
             ),
             Text(
               "How was your day?",
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
                   color: Color(0xfff7f0c6)),
@@ -105,7 +104,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
               ),
               child: Text(
                 'Add Entry',
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Color(0xff5d7599)),
@@ -139,7 +138,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                       ),
                       child: Text(
                         'Feedback',
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Color(0xffabb6c8)),

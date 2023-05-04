@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'chat.dart';
 
@@ -24,7 +23,7 @@ class _LeftPageState extends State<LeftPage> {
             ),
             Text(
               "GARFIELD'S EMOTIONAL STATS",
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
@@ -59,7 +58,7 @@ class _LeftPageState extends State<LeftPage> {
                 height: 50,
                 alignment: Alignment.center,
                 child: Text('Chat AiU',
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Color(0xff5d7599))),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:howaiu/screens/diary_entries.dart';
 import 'package:howaiu/screens/listview_diary.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -37,7 +36,7 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
               ),
               Text(
                 'howaiu',
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                     fontSize: 45,
                     fontWeight: FontWeight.bold,
                     color: Color(0xff5d7599)),
@@ -173,7 +172,7 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
                   height: 100,
                   alignment: Alignment.center,
                   child: Text('AiU',
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Color(0xff5d7599))),
