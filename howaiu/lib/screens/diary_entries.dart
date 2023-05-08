@@ -2,11 +2,8 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-<<<<<<< Updated upstream
-=======
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:howaiu/screens/calendar.dart';
->>>>>>> Stashed changes
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 

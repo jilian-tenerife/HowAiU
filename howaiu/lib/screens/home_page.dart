@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream
-=======
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:table_calendar/table_calendar.dart';
->>>>>>> Stashed changes
+
 import 'left.dart';
 import 'calendar.dart';
-import 'right.dart';
 
 class TableCalendarExample extends StatefulWidget {
   @override

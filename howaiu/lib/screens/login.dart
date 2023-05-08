@@ -67,12 +67,8 @@ class _LoginState extends State<Login> {
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: TextField(
-<<<<<<< Updated upstream
-                        style: TextStyle(
-=======
                         controller: _emailController,
-                        style: GoogleFonts.poppins(
->>>>>>> Stashed changes
+                        style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: const Color(0xffabb6c8)),
@@ -104,13 +100,9 @@ class _LoginState extends State<Login> {
                     child: Padding(
                       padding: EdgeInsets.all(10),
                       child: TextField(
-<<<<<<< Updated upstream
-                        style: TextStyle(
-=======
                         controller: _passwordController,
                         obscureText: true,
-                        style: GoogleFonts.poppins(
->>>>>>> Stashed changes
+                        style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Color(0xff5d7599)),

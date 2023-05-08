@@ -51,7 +51,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< Updated upstream
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xffabb6c8),
@@ -94,49 +93,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     setState(() {
                       feedback = value;
                     });
-=======
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Feedback'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Center(
-                child: SizedBox(
-                  height: 10,
-                ),
-              ),
-            ),
-            if (title != '')
-              (AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                    title,
-                    textStyle: TextStyle(
-                      fontSize: 32.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                ],
-                repeatForever: false, // Set this to false
-                totalRepeatCount:
-                    1, // Set this to 1 to play the animation only once
-              )),
-            SizedBox(
-              height: 25,
-            ),
-            NeumorphicButton(
-              onPressed: () async {
-                await processRequest('feedback', widget.entry, (String value) {
-                  setState(() {
-                    feedback = value;
->>>>>>> Stashed changes
                   });
                 },
                 child: Text(

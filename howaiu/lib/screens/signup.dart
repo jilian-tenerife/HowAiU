@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:howaiu/screens/login.dart';
 
 class Signup extends StatefulWidget {
@@ -57,7 +56,7 @@ class _SignupState extends State<Signup> {
                 children: [
                   Text(
                     'howaiu?',
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                         color: Color(0xff5d7599)),
@@ -82,7 +81,7 @@ class _SignupState extends State<Signup> {
                       padding: const EdgeInsets.all(10),
                       child: TextField(
                         controller: _emailController,
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: const Color(0xffabb6c8)),
@@ -115,7 +114,7 @@ class _SignupState extends State<Signup> {
                       padding: EdgeInsets.all(10),
                       child: TextField(
                         controller: _passwordController,
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Color(0xff5d7599)),
@@ -171,7 +170,7 @@ class _SignupState extends State<Signup> {
                     child: Center(
                       child: Text(
                         'Sign Up', // Set the text of the button
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Color(
