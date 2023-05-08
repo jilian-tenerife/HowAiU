@@ -5,11 +5,21 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:howaiu/screens/forgotpass.dart';
 import 'package:howaiu/screens/home_page.dart';
 import 'package:howaiu/screens/signup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../main.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -57,13 +67,18 @@ class Login extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: TextField(
+<<<<<<< Updated upstream
                         style: TextStyle(
+=======
+                        controller: _emailController,
+                        style: GoogleFonts.poppins(
+>>>>>>> Stashed changes
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: const Color(0xffabb6c8)),
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Username',
+                          hintText: 'Email',
                           hintStyle: const TextStyle(
                             color: Color(0xff5d7599),
                           ),
@@ -89,7 +104,13 @@ class Login extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(10),
                       child: TextField(
+<<<<<<< Updated upstream
                         style: TextStyle(
+=======
+                        controller: _passwordController,
+                        obscureText: true,
+                        style: GoogleFonts.poppins(
+>>>>>>> Stashed changes
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Color(0xff5d7599)),
@@ -148,12 +169,26 @@ class Login extends StatelessWidget {
                       intensity: 0.7,
                       color: baseColor),
                   child: NeumorphicButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TableCalendarExample()),
-                      );
+                    onPressed: () async {
+                      try {
+                        final UserCredential userCredential =
+                            await _auth.signInWithEmailAndPassword(
+                                email: _emailController.text.trim(),
+                                password: _passwordController.text);
+                        if (userCredential.user != null) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TableCalendarExample()),
+                          );
+                        }
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          print('No user found for that email.');
+                        } else if (e.code == 'wrong-password') {
+                          print('Wrong password provided for that user.');
+                        }
+                      }
                     },
                     style: NeumorphicStyle(
                       color: baseColor, // Set the button's background color

@@ -6,7 +6,11 @@ app = Flask(__name__)
 
 previous_entries = []
 
+<<<<<<< Updated upstream
 openai.api_key = "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"
+=======
+openai.api_key = "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"
+>>>>>>> Stashed changes
 chat_history = []
 
 
@@ -48,7 +52,7 @@ def generate_contextual_response():
 
 
 def get_response(prompt, name):
-    instruction = f'As an AI-powered intelligent chatbot named AIU, my task is to chat and give affirmations in first person, positive reinforcement, and critical psychoanalysis. I am a therapist and a friend to {name}. I will respond, not correct, nor complete.'
+    instruction = f'As an AI-powered intelligent chatbot named AIU, my task is to chat and give affirmations in first person, positive reinforcement, and critical psychoanalysis. I am a therapist and a friend to {name}. I will respond, not correct, nor complete. I will be very conversational and have a great personality. I am interesting.'
     prompt = instruction + prompt
 
     response = openai.Completion.create(

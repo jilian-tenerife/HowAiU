@@ -1,11 +1,21 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:google_fonts/google_fonts.dart';
+import 'package:howaiu/screens/calendar.dart';
+>>>>>>> Stashed changes
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import 'feedback_screen.dart';
 
 class DiaryScreen extends StatefulWidget {
+  final String formattedDate;
+
+  const DiaryScreen({required this.formattedDate});
   @override
   _DiaryScreenState createState() => _DiaryScreenState();
 }
@@ -32,6 +42,23 @@ class _DiaryScreenState extends State<DiaryScreen> {
         _result = 'Error: ${response.statusCode}';
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Fetch entries from Cloud Firestore
+    FirebaseFirestore.instance
+        .collection(widget.formattedDate)
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((doc) {
+      if (doc.exists) {
+        setState(() {
+          entries.add(doc['entry']);
+        });
+      }
+    });
   }
 
   @override
@@ -89,6 +116,12 @@ class _DiaryScreenState extends State<DiaryScreen> {
             ),
             NeumorphicButton(
               onPressed: () {
+                FirebaseFirestore.instance
+                    .collection(widget.formattedDate)
+                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                    .set({
+                  'entry': entryController.text,
+                });
                 setState(() {
                   entries.insert(
                       0,

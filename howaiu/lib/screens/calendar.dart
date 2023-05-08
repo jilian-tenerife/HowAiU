@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:howaiu/screens/diary_entries.dart';
@@ -18,6 +20,10 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
+
+  String _getFormattedDate(DateTime date) {
+    return "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,10 +113,14 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
                     _selectedDay = selectedDay;
                     _focusedDay = focusedDay;
                   });
+
+                  String formattedDate = _getFormattedDate(selectedDay);
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DiaryScreen(),
+                      builder: (context) =>
+                          DiaryScreen(formattedDate: formattedDate),
                     ),
                   );
                 },

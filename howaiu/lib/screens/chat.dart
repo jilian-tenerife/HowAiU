@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -15,6 +17,10 @@ class ChatAiu extends StatefulWidget {
 // test
 class _ChatAiuState extends State<ChatAiu> {
   final TextEditingController _controller = TextEditingController();
+  final DocumentReference userDocument = FirebaseFirestore.instance
+      .collection('users')
+      .doc(FirebaseAuth.instance.currentUser!.uid);
+
   List<ChatBubble> _messages = [
     const ChatBubble(
       text: 'How can I help you?',
@@ -22,11 +28,21 @@ class _ChatAiuState extends State<ChatAiu> {
     ),
   ];
 
+  Future<void> _saveChatMessage(ChatBubble chatBubble) async {
+    final Map<String, dynamic> data = {
+      'text': chatBubble.text,
+      'isCurrentUser': chatBubble.isCurrentUser,
+      'timestamp': FieldValue.serverTimestamp(),
+    };
+    await userDocument.collection('chats').add(data);
+  }
+
   Future<String> _sendMessage(String message, String name) async {
     String text = _controller.text.trim();
     if (text.isNotEmpty) {
       setState(() {
         _messages.add(ChatBubble(text: text, isCurrentUser: true));
+        _saveChatMessage(_messages.last);
       });
       _controller.clear();
     }
@@ -75,9 +91,34 @@ class _ChatAiuState extends State<ChatAiu> {
             height: 20,
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: _messages.length,
-              itemBuilder: (context, index) => _messages[index],
+            child: StreamBuilder<QuerySnapshot>(
+              stream: userDocument
+                  .collection('chats')
+                  .orderBy('timestamp')
+                  .snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
+
+                final List<ChatBubble> chatBubbles =
+                    snapshot.data!.docs.map<ChatBubble>((doc) {
+                  return ChatBubble(
+                    text: doc['text'],
+                    isCurrentUser: doc['isCurrentUser'],
+                  );
+                }).toList();
+
+                return ListView.builder(
+                  itemCount: chatBubbles.length,
+                  itemBuilder: (context, index) => chatBubbles[index],
+                );
+              },
             ),
           ),
           Container(
@@ -114,6 +155,7 @@ class _ChatAiuState extends State<ChatAiu> {
                     setState(() {
                       _messages.add(
                           ChatBubble(text: response, isCurrentUser: false));
+                      _saveChatMessage(_messages.last);
                     });
                   },
                   child: Icon(
