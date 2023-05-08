@@ -12,6 +12,7 @@ class ChatAiu extends StatefulWidget {
   State<ChatAiu> createState() => _ChatAiuState();
 }
 
+// test
 class _ChatAiuState extends State<ChatAiu> {
   final TextEditingController _controller = TextEditingController();
   List<ChatBubble> _messages = [
