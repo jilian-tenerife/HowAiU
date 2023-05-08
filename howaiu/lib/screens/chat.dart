@@ -88,23 +88,26 @@ class _ChatAiuState extends State<ChatAiu> {
                 Expanded(
                   child: Neumorphic(
                     style: NeumorphicStyle(
-                      depth: 4,
+                      depth: -4,
                       shape: NeumorphicShape.convex,
                       lightSource: LightSource.topLeft,
                       color: Color(0xffabb6c8),
                     ),
                     child: TextField(
-                      controller: _controller,
-                      decoration: InputDecoration(
-                        hintText: 'Type your message...',
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 15.0, vertical: 10.0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: BorderSide.none,
+                        controller: _controller,
+                        decoration: InputDecoration(
+                          hintText: 'Type your message...',
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 15.0, vertical: 10.0),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            borderSide: BorderSide.none,
+                          ),
                         ),
-                      ),
-                    ),
+                        minLines: 1, // Minimum number of lines
+                        maxLines:
+                            null, // Expands the TextField when text reaches the end
+                        keyboardType: TextInputType.multiline),
                   ),
                 ),
                 NeumorphicButton(
@@ -116,9 +119,17 @@ class _ChatAiuState extends State<ChatAiu> {
                           ChatBubble(text: response, isCurrentUser: false));
                     });
                   },
-                  child: Icon(
-                    Icons.send,
-                    color: Color(0xffabb6c8),
+                  style: NeumorphicStyle(
+                    shape: NeumorphicShape.flat,
+                    depth: 1,
+                    color: Color(0xffabb6c8), // Set the button color here
+                  ),
+                  child: Container(
+                    constraints: BoxConstraints(minHeight: 30, maxHeight: 50),
+                    child: Icon(
+                      Icons.send,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],

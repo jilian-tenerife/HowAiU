@@ -19,7 +19,6 @@ class _TableCalendarExampleState extends State<TableCalendarExample> {
         backgroundColor: baseColor,
         body: PageView(
           controller: _pageController, // Add a controller for navigation
-          physics: NeverScrollableScrollPhysics(), // Disable swipe navigation
           children: [
             LeftPage(),
             TableCalendarPage(),
@@ -29,17 +28,6 @@ class _TableCalendarExampleState extends State<TableCalendarExample> {
             // Handle page change
           },
         ),
-      ),
-    );
-  }
-}
-
-class Settings extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('Settings Page'),
       ),
     );
   }
