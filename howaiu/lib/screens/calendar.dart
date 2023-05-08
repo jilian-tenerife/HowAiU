@@ -196,10 +196,10 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
               ),
               NeumorphicButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Settings()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => Settings()),
+                  // );
                 },
                 style: NeumorphicStyle(
                   shape: NeumorphicShape.convex,

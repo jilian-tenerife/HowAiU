@@ -23,7 +23,7 @@ class _TableCalendarExampleState extends State<TableCalendarExample> {
           children: [
             LeftPage(),
             TableCalendarPage(),
-            Settings(),
+            //Settings(),
           ],
           onPageChanged: (int index) {
             // Handle page change
