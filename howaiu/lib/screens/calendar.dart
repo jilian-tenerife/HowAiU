@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:howaiu/screens/diary_entries.dart';
+import 'package:howaiu/screens/left.dart';
 import 'package:howaiu/screens/listview_diary.dart';
+import 'package:howaiu/screens/right.dart';
 import 'package:table_calendar/table_calendar.dart';
-
 import 'chat.dart';
-import 'diary.dart';
 
 class TableCalendarPage extends StatefulWidget {
   @override
@@ -144,6 +144,12 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               NeumorphicButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LeftPage()),
+                  );
+                },
                 style: NeumorphicStyle(
                   shape: NeumorphicShape.convex,
                   boxShape: NeumorphicBoxShape.circle(),
@@ -189,15 +195,23 @@ class _TableCalendarPageState extends State<TableCalendarPage> {
                 ),
               ),
               NeumorphicButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Settings()),
+                  );
+                },
                 style: NeumorphicStyle(
-                  color: baseColor,
                   shape: NeumorphicShape.convex,
                   boxShape: NeumorphicBoxShape.circle(),
-                  depth: 5,
+                  depth: 8,
+                  intensity: 0.7,
+                  lightSource: LightSource.topLeft,
+                  color: Colors.grey[300],
                 ),
                 child: Container(
-                  width: 50,
-                  height: 50,
+                  width: 60,
+                  height: 60,
                   alignment: Alignment.center,
                   child: Icon(
                     Icons.settings,
